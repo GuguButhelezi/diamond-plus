@@ -40,6 +40,8 @@ header{
 }
 
 .movie__container{
+  width: 100%;
+  max-width: 1100px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -211,6 +213,29 @@ img{
 /* RESPONSIVENESS */
 /* tablets, large smartphones */
 @media (max-width: 768px) {
+  .header__title{
+    font-size: 32px;
+  }
+
+  .search{
+    font-size: 28px;
+  }
+
+  .search__img{
+    width: 70%;
+  }
+
+  .movie__title{
+    font-size: 24px;
+  }
+
+  .movie__year{
+    font-size: 20px;
+  }
+
+  .detail{
+    font-weight: lighter;
+  }
 
 }
 
