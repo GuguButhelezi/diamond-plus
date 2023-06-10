@@ -1,24 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header";
+import Movie from "./components/Movie";
+import MoreInfo from "./components/MoreInfo";
+import axios from "axios";
+import Spinner from './assets/spinner-3.svg'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
+  const [searchText, setSearchText] = useState("");
+  const [timeoutId, setTimeoutId] = useState();
+  const [movies, setMovies] = useState([]);
+  const [error, setError] = useState(true)
+  const [loading, setLoading] = useState(false)
+
+  async function fetchData(search) {
+    setLoading(true)
+    const result = await axios.get(
+      `https://www.omdbapi.com/?s=${search}&apikey=87763a8c`
+    );
+    setMovies(result.data.Search);
+    if (result.data.Error === 'Incorrect IMDb ID.'){
+      setError('Please search for something')
+    }
+    else {
+      setError(result.data.Error)
+    }
+    setLoading(false)
+  }
+
+  function onTextChange(event) {
+    clearTimeout(timeoutId);
+    setSearchText(event.target.value);
+    const timeout = setTimeout(() => fetchData(event.target.value), 1000);
+    setTimeoutId(timeout);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Router>
+        <Header onTextChange={onTextChange} searchText={searchText} />
+        <Routes>
+          <Route path="/" element={<Movie movies={movies} error={error} spinner={Spinner} loading={loading}/>} />
+          <Route path="/:imdbID" element={<MoreInfo spinner={Spinner}/>} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
