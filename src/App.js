@@ -3,29 +3,28 @@ import Header from "./components/Header";
 import Movie from "./components/Movie";
 import MoreInfo from "./components/MoreInfo";
 import axios from "axios";
-import Spinner from './assets/spinner-3.svg'
+import Spinner from "./assets/spinner-3.svg";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function App() {
   const [searchText, setSearchText] = useState("");
   const [timeoutId, setTimeoutId] = useState();
   const [movies, setMovies] = useState([]);
-  const [error, setError] = useState(true)
-  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   async function fetchData(search) {
-    setLoading(true)
+    setLoading(true);
     const result = await axios.get(
       `https://www.omdbapi.com/?s=${search}&apikey=87763a8c`
     );
     setMovies(result.data.Search);
-    if (result.data.Error === 'Incorrect IMDb ID.'){
-      setError('Please search for something')
+    if (result.data.Error === "Incorrect IMDb ID.") {
+      setError("Please search for something");
+    } else {
+      setError(result.data.Error);
     }
-    else {
-      setError(result.data.Error)
-    }
-    setLoading(false)
+    setLoading(false);
   }
 
   function onTextChange(event) {
@@ -40,8 +39,18 @@ function App() {
       <Router>
         <Header onTextChange={onTextChange} searchText={searchText} />
         <Routes>
-          <Route path="/" element={<Movie movies={movies} error={error} spinner={Spinner} loading={loading}/>} />
-          <Route path="/:imdbID" element={<MoreInfo spinner={Spinner}/>} />
+          <Route
+            path="/"
+            element={
+              <Movie
+                movies={movies}
+                error={error}
+                spinner={Spinner}
+                loading={loading}
+              />
+            }
+          />
+          <Route path="/:imdbID" element={<MoreInfo spinner={Spinner} />} />
         </Routes>
       </Router>
     </>

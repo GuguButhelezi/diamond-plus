@@ -1,7 +1,6 @@
 import Logo from "../assets/Diamond+.png";
 
-function Header({onTextChange, searchText}) {
-
+function Header({ onTextChange, searchText }) {
   return (
     <header>
       <img src={Logo} alt="movie__image" className="movie__img" />

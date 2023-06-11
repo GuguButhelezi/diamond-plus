@@ -1,13 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Oswald", 'sans-serif';
+  font-family: "Oswald", "sans-serif";
 }
 
-header{
+header {
   display: flex;
   background-color: black;
   color: white;
@@ -18,13 +18,13 @@ header{
   align-items: center;
 }
 
-.movie__img{
+.movie__img {
   width: 48px;
   height: 48px;
   margin: 12px;
 }
 
-.search__bar{
+.search__bar {
   padding: 24px;
   background-color: white;
   border-radius: 8px;
@@ -32,14 +32,14 @@ header{
   width: 50%;
 }
 
-.search{
+.search {
   color: black;
   font-size: 32px;
   border: none;
   outline: none;
 }
 
-.movie__container{
+.movie__container {
   width: 100%;
   max-width: 1100px;
   display: flex;
@@ -50,7 +50,7 @@ header{
   align-items: center;
 }
 
-.movie{
+.movie {
   position: relative;
   border: 2px solid green;
   border-radius: 8px;
@@ -63,11 +63,11 @@ header{
   overflow: hidden;
 }
 
-.movie:hover{
+.movie:hover {
   box-shadow: 3px 3px 10px 0px red;
 }
 
-.movie__description{
+.movie__description {
   position: absolute;
   display: flex;
   align-items: center;
@@ -84,53 +84,53 @@ header{
   transition: opacity 300ms, transform 450ms ease;
 }
 
-.movie:hover .movie__description{
+.movie:hover .movie__description {
   opacity: 0.5;
   transform: translateX(0%);
 }
 
-.movie__poster{
+.movie__poster {
   height: 300px;
   width: 100%;
   object-fit: cover;
 }
 
-.info{
+.info {
   display: flex;
   flex-direction: column;
 }
 
-.movie__title{
+.movie__title {
   font-size: 28px;
   color: green;
-  margin: 4px 6px ;
+  margin: 4px 6px;
 }
 
-.movie__year{
+.movie__year {
   font-size: 24px;
   color: green;
   font-style: italic;
   margin: 4px 6px;
 }
 
-.movie__type{
+.movie__type {
   font-size: 24px;
   color: green;
   margin: 4px 6px;
 }
 
-.search__img{
+.search__img {
   width: 100%;
   object-fit: cover;
 }
 
-.mount{
+.mount {
   display: flex;
   flex-direction: column-reverse;
   align-items: center;
 }
 
-.info__container{
+.info__container {
   width: 100%;
   display: flex;
   padding: 12px;
@@ -138,7 +138,8 @@ header{
   margin: 0 auto;
 }
 
-.left, .right{
+.left,
+.right {
   width: 50%;
   margin-right: 16px;
   display: flex;
@@ -147,30 +148,30 @@ header{
   justify-content: center;
 }
 
-.left__img{
+.left__img {
   width: 100%;
   max-height: 350px;
   object-fit: cover;
 }
 
-.details{
+.details {
   padding: 6px;
 }
 
-.detail{
+.detail {
   margin-bottom: 12px;
   text-align: center;
   font-size: 20px;
 }
 
-.normal{
+.normal {
   font-size: 16px;
   color: #242424;
 }
 
 /* LOADING */
 
-.spinner{
+.spinner {
   width: 48px;
   height: 48px;
   margin: auto;
@@ -179,20 +180,19 @@ header{
 }
 
 @keyframes spin {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
-  
 }
 
-img{
+img {
   width: 100%;
 }
 
-.back{
+.back {
   background-color: red;
   color: #fff;
   cursor: pointer;
@@ -202,45 +202,90 @@ img{
   margin: 12px 8px;
 }
 
-.back:hover{
+.back:hover {
   background-color: #242424;
 }
 
-.back:active{
+.back:active {
   transform: scale(0.7);
 }
 
 /* RESPONSIVENESS */
 /* tablets, large smartphones */
 @media (max-width: 768px) {
-  .header__title{
+  .header__title {
     font-size: 32px;
   }
 
-  .search{
+  .search {
     font-size: 28px;
   }
 
-  .search__img{
+  .search__img {
     width: 70%;
   }
 
-  .movie__title{
+  .movie__title {
     font-size: 24px;
   }
 
-  .movie__year{
+  .movie__year {
     font-size: 20px;
   }
 
-  .detail{
+  .detail {
     font-weight: lighter;
   }
-
 }
 
 /* Small phones */
 
 @media (max-width: 480px) {
+  header {
+    flex-direction: column;
+  }
 
+  .search__bar {
+    border-radius: 32px;
+    margin: 8px;
+    padding: 4px 0px 8px 20px;
+  }
+
+  .search {
+    width: 80%;
+    font-size: 20px;
+  }
+
+  .movie {
+    width: 80%;
+  }
+
+  .movie__title {
+    font-size: 20px;
+  }
+
+  .movie__year {
+    font-size: 18px;
+  }
+
+  .info__container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .back {
+    position: fixed;
+  }
+
+  .mount {
+    margin-top: 36px;
+  }
+
+  .right {
+    margin-top: 28px;
+  }
+
+  .left__img {
+    border-radius: 8px;
+  }
 }
