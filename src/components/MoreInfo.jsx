@@ -45,7 +45,7 @@ function MoreInfo({ spinner }) {
                   Release date : <p className="normal">{idInfo.Released}</p>
                 </h2>
                 <h2 className="detail">
-                  Language : <p className="normal">{idInfo.Actors}</p>
+                  Language : <p className="normal">{idInfo.Language}</p>
                 </h2>
                 <h2 className="detail">Rated: {idInfo.Rated}</h2>
                 <h2 className="detail">
