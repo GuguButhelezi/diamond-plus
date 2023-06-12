@@ -12,12 +12,11 @@ function Movie({ movies, error, spinner, loading }) {
           <div className="movie__container">
             {movies?.length > 0 ? (
               movies.map((movie) => (
-                <div
-                  className="movie"
-                  key={movie.imdbID}
-                  onClick={() => navigate(`/${movie.imdbID}`)}
-                >
-                  <div className="movie__description">
+                <div className="movie" key={movie.imdbID}>
+                  <div
+                    className="movie__description"
+                    onClick={() => navigate(`/${movie.imdbID}`)}
+                  >
                     <h2>More Info→</h2>
                   </div>
                   <img
