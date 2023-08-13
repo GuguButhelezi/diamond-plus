@@ -12,11 +12,13 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [pageNumber, setPageNumber] = useState(1)
 
   async function fetchData(search) {
     setLoading(true);
+    console.log(`https://www.omdbapi.com/?s=${search}&page=2&apikey=87763a8c`)
     const result = await axios.get(
-      `https://www.omdbapi.com/?s=${search}&apikey=87763a8c`
+      `https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=87763a8c`
     );
     setMovies(result.data.Search);
     if (result.data.Error === "Incorrect IMDb ID.") {
