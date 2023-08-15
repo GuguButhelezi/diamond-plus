@@ -16,7 +16,8 @@ function App() {
 
   async function fetchData(search) {
     setLoading(true);
-    console.log(`https://www.omdbapi.com/?s=${search}&page=2&apikey=87763a8c`)
+    // const pagetest = await axios.get(`https://www.omdbapi.com/?s=${search}&page=86&apikey=87763a8c`)
+    // console.log(pagetest)
     const result = await axios.get(
       `https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=87763a8c`
     );
@@ -49,6 +50,8 @@ function App() {
                 error={error}
                 spinner={Spinner}
                 loading={loading}
+                pageNumber={pageNumber}
+                setPageNumber={setPageNumber}
               />
             }
           />

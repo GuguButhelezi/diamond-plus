@@ -43,6 +43,51 @@ header {
 
 /* Main */
 
+.page__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 24px 24px 0 24px;
+  visibility: hidden;
+}
+
+.page__turner--left {
+  width: 40px;
+  border: none;
+  transition: all 300ms ease;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: green;
+  color: #fff;
+}
+
+.page__turner--right {
+  width: 40px;
+  border: none;
+  transition: all 300ms ease;
+  border-radius: 8px;
+  padding: 4px;
+  background-color: green;
+  color: #fff;
+}
+
+.page__turner--left:hover,
+.page__turner--right:hover {
+  cursor: pointer;
+  background-color: red;
+  color: black;
+}
+
+.page__turner--left:active, .page__turner--right:active{
+  transform: scale(0.8);
+}
+
+.current__page {
+  padding: 12px;
+  margin: 0 8px 0 8px;
+}
+
 .movie__container {
   width: 100%;
   display: flex;
