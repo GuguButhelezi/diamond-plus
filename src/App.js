@@ -28,6 +28,7 @@ function App() {
       setError(result.data.Error);
     }
     setLoading(false);
+    return result
   }
 
   function onTextChange(event) {
@@ -46,12 +47,14 @@ function App() {
             path="/"
             element={
               <Movie
+              searchText={searchText}
                 movies={movies}
                 error={error}
                 spinner={Spinner}
                 loading={loading}
                 pageNumber={pageNumber}
                 setPageNumber={setPageNumber}
+                fetchData={fetchData}
               />
             }
           />
