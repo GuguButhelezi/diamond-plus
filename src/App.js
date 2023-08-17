@@ -13,11 +13,10 @@ function App() {
   const [error, setError] = useState(true);
   const [loading, setLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(1)
+  const [display, setDisplay] = useState('none')
 
-  async function fetchData(search) {
+  async function fetchData(search, pageNumber) {
     setLoading(true);
-    // const pagetest = await axios.get(`https://www.omdbapi.com/?s=${search}&page=86&apikey=87763a8c`)
-    // console.log(pagetest)
     const result = await axios.get(
       `https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=87763a8c`
     );
@@ -28,6 +27,12 @@ function App() {
       setError(result.data.Error);
     }
     setLoading(false);
+
+    if (movies?.length > 0){
+      setDisplay('flex')
+      console.log(display)
+    }
+
     return result
   }
 
@@ -36,6 +41,24 @@ function App() {
     setSearchText(event.target.value);
     const timeout = setTimeout(() => fetchData(event.target.value), 1000);
     setTimeoutId(timeout);
+  }
+
+  function left(){
+    if(pageNumber === 1){
+      return
+    }
+    setPageNumber(pageNumber-1)
+    fetchData(searchText, pageNumber-1)
+    console.log(pageNumber-1)
+  }
+
+  function right(){
+    if (error){
+      return
+    }
+    setPageNumber(pageNumber+1)
+    console.log(pageNumber+1)
+    fetchData(searchText, pageNumber+1)
   }
 
   return (
@@ -53,8 +76,10 @@ function App() {
                 spinner={Spinner}
                 loading={loading}
                 pageNumber={pageNumber}
-                setPageNumber={setPageNumber}
+                left={left}
+                right={right}
                 fetchData={fetchData}
+                display={display}
               />
             }
           />

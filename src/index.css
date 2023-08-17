@@ -44,7 +44,7 @@ header {
 /* Main */
 
 .page__buttons {
-  display: none;
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -82,7 +82,7 @@ header {
   transform: scale(0.8);
 }
 
-.current__page {
+.current__page{
   padding: 12px;
   margin: 0 8px 0 8px;
 }

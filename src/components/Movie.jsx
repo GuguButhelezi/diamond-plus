@@ -3,53 +3,41 @@ import Look from "../assets/undraw_home_cinema_l7yl.svg";
 import { useNavigate } from "react-router-dom";
 
 function Movie({
-  searchText,
-  fetchData,
   movies,
   error,
   spinner,
   loading,
   pageNumber,
-  setPageNumber,
+  left, right, display
 }) {
   let navigate = useNavigate();
-  
-  // function turnPageLeft() {
-  //   if ( !searchText || pageNumber < 1) {
-  //     return;
-  //   } 
     
-  //   if (pageNumber > 0) {
-  //     setPageNumber(pageNumber - 1);
-  //     fetchData(searchText);
-  //   } 
-  // }
-
-  // function turnPageRight() {
-  //   if (!searchText || !movies) {
-  //     return;
-  //   } 
-
-  //   if (pageNumber >= 1 ) {
-  //     setPageNumber(pageNumber + 1);
-  //     console.log(fetchData(searchText));
-  //   }
-
-  // }
 
   return (
     <>
       {!loading ? (
         <>
-          <div className="page__buttons">
-            <button className="page__turner--left">
-              <span>←</span>
-            </button>
-            <div className="current__page">{pageNumber}</div>
-            <button className="page__turner--right">
-              <span>→</span>
-            </button>
-          </div>
+          <>
+            <>
+            {movies?.length > 0 ? (<div className="page__buttons" style={{display: display}}>
+                <button className="page__turner--left" onClick={left}>
+                  <span>←</span>
+                </button>
+                <div className="current__page" >{pageNumber}</div>
+                <button className="page__turner--right" onClick={right}>
+                  <span>→</span>
+                </button>
+              </div>) : (<div className="page__buttons" style={{display: display}}>
+                <button className="page__turner--left" onClick={left}>
+                  <span>←</span>
+                </button>
+                <div className="current__page">{pageNumber}</div>
+                <button className="page__turner--right" onClick={right}>
+                  <span>→</span>
+                </button>
+              </div>)}              
+            </>
+          </>
           <div className="movie__container">
             {movies?.length > 0 ? (
               movies.map((movie) => (
