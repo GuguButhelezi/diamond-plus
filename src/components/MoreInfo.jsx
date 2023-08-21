@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -15,6 +15,7 @@ function MoreInfo({ spinner }) {
     );
     setIdInfo(more.data);
     setLoad(false);
+    // console.log(more)
   }
 
   useEffect(() => {

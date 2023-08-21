@@ -8,10 +8,11 @@ function Movie({
   spinner,
   loading,
   pageNumber,
-  left, right, display
+  left,
+  right,
+  filterMovies,
 }) {
   let navigate = useNavigate();
-    
 
   return (
     <>
@@ -19,26 +20,47 @@ function Movie({
         <>
           <>
             <>
-            {movies?.length > 0 ? (<div className="page__buttons" style={{display: display}}>
-                <button className="page__turner--left" onClick={left}>
-                  <span>←</span>
-                </button>
-                <div className="current__page" >{pageNumber}</div>
-                <button className="page__turner--right" onClick={right}>
-                  <span>→</span>
-                </button>
-              </div>) : (<div className="page__buttons" style={{display: display}}>
-                <button className="page__turner--left" onClick={left}>
-                  <span>←</span>
-                </button>
-                <div className="current__page">{pageNumber}</div>
-                <button className="page__turner--right" onClick={right}>
-                  <span>→</span>
-                </button>
-              </div>)}              
+              {!error ? (
+                <div className="page__buttons" style={{ display: "flex" }}>
+                  <button className="page__turner--left" onClick={left}>
+                    <span>←</span>
+                  </button>
+                  <div className="current__page">{pageNumber}</div>
+                  <button className="page__turner--right" onClick={right}>
+                    <span>→</span>
+                  </button>
+                </div>
+              ) : (
+                <div className="page__buttons" style={{ display: "none" }}>
+                  <button className="page__turner--left" onClick={left}>
+                    <span>←</span>
+                  </button>
+                  <div className="current__page">{pageNumber}</div>
+                  <button className="page__turner--right" onClick={right}>
+                    <span>→</span>
+                  </button>
+                </div>
+              )}
             </>
           </>
           <div className="movie__container">
+            <>
+              {movies?.length > 0 ? (
+                <select
+                  id="filter"
+                  defaultValue="DEFAULT"
+                  onChange={(event) => filterMovies(event.target.value)}
+                >
+                  <option value="DEFAULT" disabled>
+                    Sort by:
+                  </option>
+                  <option value="Year, ascending">Year, ascending</option>
+                  <option value="Year, descending">Year, descending</option>
+                </select>
+              ) : (
+                ""
+              )}
+            </>
             {movies?.length > 0 ? (
               movies.map((movie) => (
                 <div className="movie" key={movie.imdbID}>

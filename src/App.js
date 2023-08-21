@@ -12,8 +12,7 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [error, setError] = useState(true);
   const [loading, setLoading] = useState(false);
-  const [pageNumber, setPageNumber] = useState(1)
-  const [display, setDisplay] = useState('none')
+  const [pageNumber, setPageNumber] = useState(1);
 
   async function fetchData(search, pageNumber) {
     setLoading(true);
@@ -21,6 +20,7 @@ function App() {
       `https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=87763a8c`
     );
     setMovies(result.data.Search);
+    console.log(movies);
     if (result.data.Error === "Incorrect IMDb ID.") {
       setError("Please search for something");
     } else {
@@ -28,12 +28,15 @@ function App() {
     }
     setLoading(false);
 
-    if (movies?.length > 0){
-      setDisplay('flex')
-      console.log(display)
-    }
+    return result;
+  }
 
-    return result
+  function filterMovies(filter) {
+    if (filter === "Year, ascending") {
+      setMovies(movies.slice().sort((a, b) => a.Year - b.Year));
+    } else if (filter === "Year, descending") {
+      setMovies(movies.slice().sort((a, b) => b.Year - a.Year));
+    }
   }
 
   function onTextChange(event) {
@@ -41,24 +44,25 @@ function App() {
     setSearchText(event.target.value);
     const timeout = setTimeout(() => fetchData(event.target.value), 1000);
     setTimeoutId(timeout);
+    setPageNumber(1);
   }
 
-  function left(){
-    if(pageNumber === 1){
-      return
+  function left() {
+    if (pageNumber === 1) {
+      return;
     }
-    setPageNumber(pageNumber-1)
-    fetchData(searchText, pageNumber-1)
-    console.log(pageNumber-1)
+    setPageNumber(pageNumber - 1);
+    fetchData(searchText, pageNumber - 1);
+    console.log(pageNumber - 1);
   }
 
-  function right(){
-    if (error){
-      return
+  function right() {
+    if (error) {
+      return;
     }
-    setPageNumber(pageNumber+1)
-    console.log(pageNumber+1)
-    fetchData(searchText, pageNumber+1)
+    setPageNumber(pageNumber + 1);
+    console.log(pageNumber + 1);
+    fetchData(searchText, pageNumber + 1);
   }
 
   return (
@@ -70,7 +74,7 @@ function App() {
             path="/"
             element={
               <Movie
-              searchText={searchText}
+                searchText={searchText}
                 movies={movies}
                 error={error}
                 spinner={Spinner}
@@ -79,7 +83,7 @@ function App() {
                 left={left}
                 right={right}
                 fetchData={fetchData}
-                display={display}
+                filterMovies={filterMovies}
               />
             }
           />
