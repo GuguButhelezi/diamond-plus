@@ -6,6 +6,7 @@ import axios from "axios";
 import Spinner from "./assets/spinner-3.svg";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+
 function App() {
   const [searchText, setSearchText] = useState("");
   const [timeoutId, setTimeoutId] = useState();
@@ -13,6 +14,7 @@ function App() {
   const [error, setError] = useState(true);
   const [loading, setLoading] = useState(false);
   const [pageNumber, setPageNumber] = useState(1);
+  
 
   async function fetchData(search, pageNumber) {
     setLoading(true);
@@ -70,6 +72,7 @@ function App() {
       <Router>
         <Header onTextChange={onTextChange} searchText={searchText} />
         <Routes>
+          <Route path="/:searchText" element={<Header/>} />
           <Route
             path="/"
             element={

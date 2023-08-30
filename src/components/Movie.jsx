@@ -2,6 +2,8 @@ import React from "react";
 import Look from "../assets/undraw_home_cinema_l7yl.svg";
 import { useNavigate } from "react-router-dom";
 
+
+
 function Movie({
   movies,
   error,
