@@ -19,8 +19,10 @@ function App() {
   async function fetchData(search, pageNumber) {
     setLoading(true);
     const result = await axios.get(
-      `https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=87763a8c`
-    );
+      `https://www.omdbapi.com/?s=${search}&page=${pageNumber}&apikey=87763a8c`);
+    // const type = await axios.get(`https://www.omdbapi.com/?type=trending`)
+    // console.log(type)
+    
     setMovies(result.data.Search);
     console.log(movies);
     if (result.data.Error === "Incorrect IMDb ID.") {
@@ -72,7 +74,7 @@ function App() {
       <Router>
         <Header onTextChange={onTextChange} searchText={searchText} />
         <Routes>
-          <Route path="/:searchText" element={<Header/>} />
+          {/* <Route path="/:searchText" element={<Header/>} /> */}
           <Route
             path="/"
             element={

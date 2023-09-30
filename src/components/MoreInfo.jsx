@@ -15,7 +15,7 @@ function MoreInfo({ spinner }) {
     );
     setIdInfo(more.data);
     setLoad(false);
-    // console.log(more)
+    console.log(more)
   }
 
   useEffect(() => {
